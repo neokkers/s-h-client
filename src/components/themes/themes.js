@@ -14,13 +14,17 @@ const sizes = {
   xl: "300px",
   auto: "500px",
 };
+const utils = {
+  boxShadow:
+    "0px 5px 5px -3px rgba(0,0,0,0.05), 0px 8px 10px 1px rgba(0,0,0,0.02), 0px 3px 14px 2px rgba(0,0,0,0.02)",
+};
 
-export const lightTheme = { name: "light", spaces, sizes };
-export const darkTheme = { name: "dark", spaces, sizes };
+export const lightTheme = { name: "light", spaces, sizes, utils };
+export const darkTheme = { name: "dark", spaces, sizes, utils };
 
 lightTheme.colors = {
   primary: "#222",
-  accent: "#5290f2",
+  accent: "#FF7033",
   secondary: "#999",
   bgPrimary: "#fff",
   bgGray: "#eee",
@@ -30,7 +34,7 @@ lightTheme.colors = {
 };
 darkTheme.colors = {
   primary: "white",
-  accent: "tomato",
+  accent: "#FF7033",
   secondary: "#999",
   bgPrimary: "#222",
   bgGray: "#555",

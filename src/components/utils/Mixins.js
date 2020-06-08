@@ -2,7 +2,7 @@ import { css } from "styled-components";
 
 // Font mixins
 export const mainFont = css`
-  font-family: "Montserrat", sans-serif;
+  font-family: "Cormorant Garamond", serif;
 `;
 
 // Color mixins
