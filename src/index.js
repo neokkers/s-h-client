@@ -1,15 +1,28 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import App from "./App";
-import store from "./app/store";
-import { Provider } from "react-redux";
+import store from "./_redux/store";
+import { Provider, useSelector } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
+import { selectTheme } from "./_redux/slices/themeSlice";
+import { ThemeProvider } from "styled-components";
+import { GlobalStyle } from "./components/utils";
+
+const Root = () => {
+  const theme = useSelector(selectTheme);
+
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <App />
+    </ThemeProvider>
+  );
+};
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <Root />
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
