@@ -2,13 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import { Container } from "../elements/Container";
 import LogoImg from "../../static/logo2.png";
-import { Logo } from "./Logo";
+import { Logo, LogoNew } from "./Logo";
+import { UserWidget } from "./UserWidget";
 
 export const Header = styled(({ ...props }) => {
   return (
     <div {...props}>
       <Container>
-        <Logo logo={LogoImg} />
+        <LogoNew logo={LogoImg} />
+        <UserWidget />
       </Container>
     </div>
   );
@@ -18,7 +20,9 @@ export const Header = styled(({ ...props }) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  ${Logo} {
-    margin-top: 3px;
+  > ${Container} {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 `;

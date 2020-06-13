@@ -2,7 +2,7 @@ import { css } from "styled-components";
 
 // Font mixins
 export const mainFont = css`
-  font-family: "Cormorant Garamond", serif;
+  font-family: ${(props) => props.theme.utils.fontFamily};
 `;
 
 // Color mixins

@@ -1,3 +1,5 @@
+import { light } from "@material-ui/core/styles/createPalette";
+
 const spaces = {
   xs: "0.5rem",
   s: "0.9rem",
@@ -15,6 +17,7 @@ const sizes = {
   auto: "500px",
 };
 const utils = {
+  fontFamily: '"Raleway", sans-serif',
   boxShadow:
     "0px 5px 5px -3px rgba(0,0,0,0.05), 0px 8px 10px 1px rgba(0,0,0,0.02), 0px 3px 14px 2px rgba(0,0,0,0.02)",
 };
@@ -24,7 +27,7 @@ export const darkTheme = { name: "dark", spaces, sizes, utils };
 
 lightTheme.colors = {
   primary: "#222",
-  accent: "#FF7033",
+  accent: "#4ec1ff",
   secondary: "#999",
   bgPrimary: "#fff",
   bgGray: "#eee",
@@ -34,7 +37,7 @@ lightTheme.colors = {
 };
 darkTheme.colors = {
   primary: "white",
-  accent: "#FF7033",
+  accent: "#ff6821",
   secondary: "#999",
   bgPrimary: "#222",
   bgGray: "#555",

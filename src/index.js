@@ -10,6 +10,7 @@ import { GlobalStyle } from "./components/utils";
 import { ApolloProvider } from "@apollo/react-hooks";
 
 import ApolloClient from "apollo-boost";
+import { MuiTheme } from "./components/utils/MuiTheme";
 
 const client = new ApolloClient({
   uri: "http://localhost:5001/graphql",
@@ -20,8 +21,10 @@ const Root = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <App />
+      <MuiTheme>
+        <GlobalStyle />
+        <App />
+      </MuiTheme>
     </ThemeProvider>
   );
 };

@@ -2,13 +2,14 @@ import { createGlobalStyle } from "styled-components";
 import { mainFont } from "./Mixins";
 
 export const GlobalStyle = createGlobalStyle`
-  
+ 
   html {
     scroll-behavior: smooth;
     font-size: 16px;
     line-height: 1.3;
   }
   body {
+    color: ${(props) => props.theme.colors.primary};
     margin: 0;
     background-color: ${(props) => props.theme.colors.bgSecondary};
   }
@@ -16,8 +17,7 @@ export const GlobalStyle = createGlobalStyle`
     text-decoration: none;
     cursor: pointer;
   }
-  * {
-    color: ${(props) => props.theme.colors.primary};
+  * > *{
     box-sizing: border-box;
     ${mainFont};
     -webkit-overflow-scrolling: touch;
