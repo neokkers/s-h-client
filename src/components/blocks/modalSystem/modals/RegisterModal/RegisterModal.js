@@ -2,20 +2,23 @@ import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { ModalBox } from "../../styles";
 import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
+
 import { useForm } from "react-hook-form";
 import Alert from "@material-ui/lab/Alert";
 import { Title } from "../../../../elements/Title";
 import { ButtonWithLoading } from "../../../../elements/Button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
-  registerUserThunk,
-  setUser,
+  authInterface,
+  selectUserError,
+  selectUserLoading,
 } from "../../../../../_redux/slices/userSlice";
+import { register as reg } from "../../../../../lib/apiService";
 
 export const RegisterModal = styled(({ ...props }) => {
   const dispatch = useDispatch();
+  const loading = useSelector(selectUserLoading);
+  const error = useSelector(selectUserError);
 
   const { register, errors, watch, handleSubmit } = useForm({
     mode: "onChange",
@@ -23,7 +26,7 @@ export const RegisterModal = styled(({ ...props }) => {
   });
 
   const onSubmit = ({ username, email, password }, e) => {
-    // dispatch(registerUserThunk(registerUser, { username, email, password }));
+    dispatch(authInterface(reg, { username, email, password }));
   };
 
   const password = useRef({});
@@ -97,11 +100,11 @@ export const RegisterModal = styled(({ ...props }) => {
           fullWidth
           type={"submit"}
           size={"large"}
-          loading={false}
+          loading={loading}
         >
           register
         </ButtonWithLoading>
-        {false && <Alert severity="error">{"lol"}</Alert>}
+        {error && <Alert severity="error">{error}</Alert>}
       </form>
     </ModalBox>
   );
