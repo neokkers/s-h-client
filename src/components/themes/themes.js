@@ -26,7 +26,7 @@ export const lightTheme = { name: "light", spaces, sizes, utils };
 export const darkTheme = { name: "dark", spaces, sizes, utils };
 
 lightTheme.colors = {
-  primary: "#222",
+  primary: "#444",
   accent: "#4ec1ff",
   secondary: "#999",
   bgPrimary: "#fff",

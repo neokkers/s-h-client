@@ -12,17 +12,14 @@ import { useMutation } from "@apollo/react-hooks";
 import { ButtonWithLoading } from "../../../../elements/Button";
 import { useDispatch } from "react-redux";
 import {
+  loginUserThunk,
   registerUserThunk,
   setUser,
 } from "../../../../../_redux/slices/userSlice";
 
-export const REGISTER_USER = gql`
-  mutation RegisterUser(
-    $username: String!
-    $email: String!
-    $password: String!
-  ) {
-    registerUser(username: $username, email: $email, password: $password) {
+export const LOGIN_USER = gql`
+  mutation LoginUser($username: String!, $password: String!) {
+    login(username: $username, password: $password) {
       user {
         id
         username
@@ -38,7 +35,7 @@ export const REGISTER_USER = gql`
   }
 `;
 
-export const RegisterModal = styled(({ ...props }) => {
+export const LoginModal = styled(({ ...props }) => {
   const dispatch = useDispatch();
 
   const {
@@ -56,13 +53,10 @@ export const RegisterModal = styled(({ ...props }) => {
     reValidateMode: "onChange",
   });
 
-  const [
-    registerUser,
-    { loading: registerLoading, error: registerError },
-  ] = useMutation(REGISTER_USER);
+  const [f, { loading, error }] = useMutation(LOGIN_USER);
 
-  const onSubmit = ({ username, email, password }, e) => {
-    dispatch(registerUserThunk(registerUser, { username, email, password }));
+  const onSubmit = ({ username, password }, e) => {
+    dispatch(loginUserThunk(f, { username, password }));
   };
 
   const password = useRef({});
@@ -70,7 +64,7 @@ export const RegisterModal = styled(({ ...props }) => {
 
   return (
     <ModalBox {...props} onSubmit={handleSubmit(onSubmit)}>
-      <Title>Registration</Title>
+      <Title>Sign In</Title>
       <form action="">
         <TextField
           fullWidth
@@ -85,16 +79,6 @@ export const RegisterModal = styled(({ ...props }) => {
         {errors.username && (
           <Alert severity="error">{errors.username.message}</Alert>
         )}
-        <TextField
-          fullWidth
-          label="Email"
-          variant="outlined"
-          error={!!errors.email}
-          inputRef={register({
-            required: "You must specify an email",
-          })}
-          name={"email"}
-        />
         {errors.email && <Alert severity="error">{errors.email.message}</Alert>}
         <TextField
           fullWidth
@@ -114,35 +98,21 @@ export const RegisterModal = styled(({ ...props }) => {
         {errors.password && (
           <Alert severity="error">{errors.password.message}</Alert>
         )}
-
-        <TextField
-          fullWidth
-          label="Password confirmation"
-          variant="outlined"
-          type={"password"}
-          error={!!errors.passwordConf}
-          inputRef={register({
-            validate: (value) =>
-              value === password.current || "The passwords do not match",
-          })}
-          name={"passwordConf"}
-        />
-        {errors.passwordConf && (
-          <Alert severity="error">{errors.passwordConf.message}</Alert>
-        )}
         <ButtonWithLoading
           variant="contained"
           color="primary"
           fullWidth
           type={"submit"}
           size={"large"}
-          loading={registerLoading}
+          loading={loading}
         >
-          register
+          Sign in
         </ButtonWithLoading>
-        {registerError && (
+        {error && (
           <Alert severity="error">
-            {registerError.graphQLErrors[0].message}
+            {error.graphQLErrors[0]
+              ? error.graphQLErrors[0].message
+              : "server error"}
           </Alert>
         )}
       </form>

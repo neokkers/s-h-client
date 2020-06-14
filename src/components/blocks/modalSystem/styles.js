@@ -19,10 +19,10 @@ export const ModalOverlay = styled.div`
 `;
 
 export const ModalBox = styled.div`
-  width: ${(props) => props.width || "400px"};
+  width: ${(props) => props.width || "500px"};
   max-height: 80vh;
   background-color: #fff;
-  padding: 1rem;
+  padding: 2rem;
   position: relative;
   overflow-y: auto;
   z-index: 2;

@@ -1,13 +1,7 @@
-import React from "react";
-import { Header } from "./components/blocks/Header";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import { Sheet } from "./components/elements/Sheet";
-import { Container } from "./components/elements/Container";
-import { PlayerList } from "./components/blocks/PlayerList/PlayerList";
+import React, { useEffect } from "react";
 import { InfoPage } from "./components/blocks/InfoPage/InfoPage";
-import { MuiTheme } from "./components/utils/MuiTheme";
 import { ModalSystem } from "./components/blocks/modalSystem/ModalSystem";
+import { withAuth } from "./_hoc/withAuth";
 
 function App() {
   return (
@@ -18,4 +12,4 @@ function App() {
   );
 }
 
-export default App;
+export default withAuth(App);

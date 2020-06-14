@@ -11,10 +11,6 @@ import { ProfileCardSkeleton } from "../Skeleton";
 const GET_PLAYERS = gql`
   {
     users {
-      name
-      email
-      elo
-      won
       id
     }
   }
@@ -33,21 +29,21 @@ export const PlayerList = styled(({ ...props }) => {
     <Sheet {...props}>
       <TitledBlock title={"Players"}>
         {!dataAvailable && <ProfileCardSkeleton />}
-        {dataAvailable &&
-          data.users
-            .sort((a, b) => b.elo - a.elo)
-            .map(({ name, elo, id }) => {
-              const { rank, img } = rankReconciler(elo);
-              return (
-                <PlayerCard
-                  key={id}
-                  img={img}
-                  name={name}
-                  elo={elo}
-                  rank={rank}
-                />
-              );
-            })}
+        {/*{dataAvailable &&*/}
+        {/*  data.users*/}
+        {/*    .sort((a, b) => b.elo - a.elo)*/}
+        {/*    .map(({ name, elo, id }) => {*/}
+        {/*      const { rank, img } = rankReconciler(elo);*/}
+        {/*      return (*/}
+        {/*        <PlayerCard*/}
+        {/*          key={id}*/}
+        {/*          img={img}*/}
+        {/*          name={name}*/}
+        {/*          elo={elo}*/}
+        {/*          rank={rank}*/}
+        {/*        />*/}
+        {/*      );*/}
+        {/*    })}*/}
       </TitledBlock>
     </Sheet>
   );

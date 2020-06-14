@@ -12,10 +12,19 @@ export const MuiTheme = ({ children }) => {
       fontFamily: [lightTheme.utils.fontFamily],
     },
     palette: {
+      text: {
+        primary: lightTheme.colors.primary,
+      },
       primary: {
         light: lightTheme.colors.accent,
         main: lightTheme.colors.accent,
         dark: lightTheme.colors.accent,
+        contrastText: "#ffffff",
+      },
+      secondary: {
+        light: lightTheme.colors.primary,
+        main: lightTheme.colors.primary,
+        dark: lightTheme.colors.primary,
         contrastText: "#ffffff",
       },
 
