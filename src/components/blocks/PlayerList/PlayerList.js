@@ -1,34 +1,32 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { useQuery } from "@apollo/react-hooks";
-import { gql } from "apollo-boost";
 import { TitledBlock } from "../TitledBlock";
 import { Sheet } from "../../elements/Sheet";
 import { PlayerCard } from "../PlayerCard";
 import { rankReconciler } from "../../../lib/ranks";
 import { ProfileCardSkeleton } from "../Skeleton";
-
-const GET_PLAYERS = gql`
-  {
-    users {
-      id
-    }
-  }
-`;
+import { selectPlayers, setPlayers } from "../../../_redux/slices/playersSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 export const PlayerList = styled(({ ...props }) => {
-  const { data, loading, error } = useQuery(GET_PLAYERS);
+  const dispatch = useDispatch();
 
-  // if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
-
-  const dataAvailable = !loading && !error;
-  let sorted = [];
+  // useEffect(() => {
+  //   if (users.users && werewolfProfiles.werewolfProfiles) {
+  //     const playersData = users.users.map((el) => {
+  //       el.werewolfProfiles = werewolfProfiles.werewolfProfiles.find(
+  //         (el2) => el2.userId === el.id
+  //       );
+  //       return el;
+  //     });
+  //     dispatch(setPlayers(playersData));
+  //   }
+  // }, [dispatch, users.users, werewolfProfiles.werewolfProfiles]);
   // if (dataAvailable) sorted = data.users.sort((a, b) => a.elo - b.elo);
   return (
     <Sheet {...props}>
       <TitledBlock title={"Players"}>
-        {!dataAvailable && <ProfileCardSkeleton />}
+        {false && <ProfileCardSkeleton />}
         {/*{dataAvailable &&*/}
         {/*  data.users*/}
         {/*    .sort((a, b) => b.elo - a.elo)*/}

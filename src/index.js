@@ -7,14 +7,8 @@ import * as serviceWorker from "./serviceWorker";
 import { selectTheme } from "./_redux/slices/themeSlice";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "./components/utils";
-import { ApolloProvider } from "@apollo/react-hooks";
 
-import ApolloClient from "apollo-boost";
 import { MuiTheme } from "./components/utils/MuiTheme";
-
-const client = new ApolloClient({
-  uri: "http://localhost:5001/graphql",
-});
 
 const Root = () => {
   const theme = useSelector(selectTheme);
@@ -31,11 +25,9 @@ const Root = () => {
 
 ReactDOM.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <Provider store={store}>
-        <Root />
-      </Provider>
-    </ApolloProvider>
+    <Provider store={store}>
+      <Root />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

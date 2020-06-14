@@ -7,8 +7,6 @@ import Button from "@material-ui/core/Button";
 import { useForm } from "react-hook-form";
 import Alert from "@material-ui/lab/Alert";
 import { Title } from "../../../../elements/Title";
-import { gql } from "apollo-boost";
-import { useMutation } from "@apollo/react-hooks";
 import { ButtonWithLoading } from "../../../../elements/Button";
 import { useDispatch } from "react-redux";
 import {
@@ -17,46 +15,16 @@ import {
   setUser,
 } from "../../../../../_redux/slices/userSlice";
 
-export const LOGIN_USER = gql`
-  mutation LoginUser($username: String!, $password: String!) {
-    login(username: $username, password: $password) {
-      user {
-        id
-        username
-      }
-      token
-      werewolfProfile {
-        userId
-        elo
-        lost
-        won
-      }
-    }
-  }
-`;
-
 export const LoginModal = styled(({ ...props }) => {
   const dispatch = useDispatch();
 
-  const {
-    register,
-    errors,
-    control,
-    setValue,
-    getValues,
-    watch,
-    handleSubmit,
-    unregister,
-    reset,
-  } = useForm({
+  const { register, errors, watch, handleSubmit } = useForm({
     mode: "onChange",
     reValidateMode: "onChange",
   });
 
-  const [f, { loading, error }] = useMutation(LOGIN_USER);
-
   const onSubmit = ({ username, password }, e) => {
-    dispatch(loginUserThunk(f, { username, password }));
+    // dispatch(loginUserThunk(f, { username, password }));
   };
 
   const password = useRef({});
@@ -104,17 +72,11 @@ export const LoginModal = styled(({ ...props }) => {
           fullWidth
           type={"submit"}
           size={"large"}
-          loading={loading}
+          loading={false}
         >
           Sign in
         </ButtonWithLoading>
-        {error && (
-          <Alert severity="error">
-            {error.graphQLErrors[0]
-              ? error.graphQLErrors[0].message
-              : "server error"}
-          </Alert>
-        )}
+        {false && <Alert severity="error">{"dlfjk"}</Alert>}
       </form>
     </ModalBox>
   );

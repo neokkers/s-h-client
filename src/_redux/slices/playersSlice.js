@@ -1,27 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { incrementByAmount } from "../features/counter/counterSlice";
-import { gql } from "apollo-boost";
 
 export const playersSlice = createSlice({
   name: "players",
   initialState: {
     data: null,
-    loading: false,
-    error: false,
   },
   reducers: {
     setPlayers: (state, action) => {
-      state.data = action.payload.data;
-      state.loading = action.payload.loading;
-      state.error = action.payload.error;
+      state.data = action.payload;
     },
-    setPlayersLoading: (state, action) => {
-      state.loading = action.payload;
-    },
+    // setPlayersLoading: (state, action) => {
+    //   state.loading = action.payload;
+    // },
   },
 });
 
-export const { setPlayers, setPlayersLoading } = playersSlice.actions;
+export const { setPlayers } = playersSlice.actions;
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
@@ -31,6 +26,6 @@ export const { setPlayers, setPlayersLoading } = playersSlice.actions;
 //   dispatch(setPlayers({ loading, data, error }));
 // };
 
-export const selectPlayers = (state) => state.players;
+export const selectPlayers = (state) => state.players.data;
 
 export default playersSlice.reducer;

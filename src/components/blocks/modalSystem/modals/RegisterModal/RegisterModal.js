@@ -7,8 +7,6 @@ import Button from "@material-ui/core/Button";
 import { useForm } from "react-hook-form";
 import Alert from "@material-ui/lab/Alert";
 import { Title } from "../../../../elements/Title";
-import { gql } from "apollo-boost";
-import { useMutation } from "@apollo/react-hooks";
 import { ButtonWithLoading } from "../../../../elements/Button";
 import { useDispatch } from "react-redux";
 import {
@@ -16,53 +14,16 @@ import {
   setUser,
 } from "../../../../../_redux/slices/userSlice";
 
-export const REGISTER_USER = gql`
-  mutation RegisterUser(
-    $username: String!
-    $email: String!
-    $password: String!
-  ) {
-    registerUser(username: $username, email: $email, password: $password) {
-      user {
-        id
-        username
-      }
-      token
-      werewolfProfile {
-        userId
-        elo
-        lost
-        won
-      }
-    }
-  }
-`;
-
 export const RegisterModal = styled(({ ...props }) => {
   const dispatch = useDispatch();
 
-  const {
-    register,
-    errors,
-    control,
-    setValue,
-    getValues,
-    watch,
-    handleSubmit,
-    unregister,
-    reset,
-  } = useForm({
+  const { register, errors, watch, handleSubmit } = useForm({
     mode: "onChange",
     reValidateMode: "onChange",
   });
 
-  const [
-    registerUser,
-    { loading: registerLoading, error: registerError },
-  ] = useMutation(REGISTER_USER);
-
   const onSubmit = ({ username, email, password }, e) => {
-    dispatch(registerUserThunk(registerUser, { username, email, password }));
+    // dispatch(registerUserThunk(registerUser, { username, email, password }));
   };
 
   const password = useRef({});
@@ -136,15 +97,11 @@ export const RegisterModal = styled(({ ...props }) => {
           fullWidth
           type={"submit"}
           size={"large"}
-          loading={registerLoading}
+          loading={false}
         >
           register
         </ButtonWithLoading>
-        {registerError && (
-          <Alert severity="error">
-            {registerError.graphQLErrors[0].message}
-          </Alert>
-        )}
+        {false && <Alert severity="error">{"lol"}</Alert>}
       </form>
     </ModalBox>
   );
