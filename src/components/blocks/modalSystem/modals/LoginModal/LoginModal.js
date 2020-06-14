@@ -2,21 +2,24 @@ import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { ModalBox } from "../../styles";
 import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 import { useForm } from "react-hook-form";
 import Alert from "@material-ui/lab/Alert";
 import { Title } from "../../../../elements/Title";
 import { ButtonWithLoading } from "../../../../elements/Button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
+  authInterface,
   loginUserThunk,
-  registerUserThunk,
-  setUser,
+  selectUser,
+  selectUserError,
+  selectUserLoading,
 } from "../../../../../_redux/slices/userSlice";
+import { login } from "../../../../../lib/apiService";
 
 export const LoginModal = styled(({ ...props }) => {
   const dispatch = useDispatch();
+  const loading = useSelector(selectUserLoading);
+  const error = useSelector(selectUserError);
 
   const { register, errors, watch, handleSubmit } = useForm({
     mode: "onChange",
@@ -24,7 +27,7 @@ export const LoginModal = styled(({ ...props }) => {
   });
 
   const onSubmit = ({ username, password }, e) => {
-    // dispatch(loginUserThunk(f, { username, password }));
+    dispatch(authInterface(login, { username, password }));
   };
 
   const password = useRef({});
@@ -72,11 +75,11 @@ export const LoginModal = styled(({ ...props }) => {
           fullWidth
           type={"submit"}
           size={"large"}
-          loading={false}
+          loading={loading}
         >
           Sign in
         </ButtonWithLoading>
-        {false && <Alert severity="error">{"dlfjk"}</Alert>}
+        {error && <Alert severity="error">{error}</Alert>}
       </form>
     </ModalBox>
   );

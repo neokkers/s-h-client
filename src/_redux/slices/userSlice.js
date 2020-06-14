@@ -9,6 +9,7 @@ export const slice = createSlice({
   initialState: {
     auth: false,
     loading: false,
+    error: null,
     userData: {
       username: null,
     },
@@ -21,9 +22,12 @@ export const slice = createSlice({
     setUserLoading: (state, action) => {
       state.loading = action.payload;
     },
+    setUserError: (state, action) => {
+      state.error = action.payload;
+    },
   },
 });
-export const { setUser, setUserLoading } = slice.actions;
+export const { setUser, setUserLoading, setUserError } = slice.actions;
 
 export const authFromToken = () => (dispatch) => {
   const token = localStorage.getItem("token");
@@ -41,7 +45,7 @@ export const authFromToken = () => (dispatch) => {
   }
 };
 export const logout = () => (dispatch) => {
-  const token = localStorage.removeItem("token");
+  localStorage.removeItem("token");
   dispatch(
     setUser({
       auth: false,
@@ -51,29 +55,24 @@ export const logout = () => (dispatch) => {
     })
   );
 };
-export const registerUserThunk = ({ username, email, password }) => (
-  dispatch
-) =>
-  register({ username, email, password })
-    .then(({ token }) => {
+export const authInterface = (f, params) => (dispatch) => {
+  dispatch(setUserLoading(true));
+  f(params)
+    .then(({ data: { token } }) => {
       localStorage.setItem("token", token);
       dispatch(authFromToken());
       dispatch(closeModal());
+      dispatch(setUserLoading(false));
     })
     .catch((e) => {
       console.error("error from RegisterModal", e);
+      dispatch(setUserError(e.message));
+      dispatch(setUserLoading(false));
     });
-export const loginUserThunk = ({ username, password }) => (dispatch) =>
-  login({ username, password })
-    .then(({ token }) => {
-      localStorage.setItem("token", token);
-      dispatch(authFromToken());
-      dispatch(closeModal());
-    })
-    .catch((e) => {
-      console.error("error from LoginModal", e);
-    });
+};
 
 export const selectUser = (state) => state.user;
+export const selectUserLoading = (state) => state.user.loading;
+export const selectUserError = (state) => state.user.error;
 
 export default slice.reducer;
