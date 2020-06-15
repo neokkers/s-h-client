@@ -34,9 +34,9 @@ export const LoginModal = styled(({ ...props }) => {
   password.current = watch("password", "");
 
   return (
-    <ModalBox {...props} onSubmit={handleSubmit(onSubmit)}>
+    <ModalBox {...props}>
       <Title>Sign In</Title>
-      <form action="">
+      <form action="" onSubmit={handleSubmit(onSubmit)}>
         <TextField
           fullWidth
           label="Username"

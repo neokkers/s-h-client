@@ -11,13 +11,20 @@ import {
   selectWerewolfProfiles,
 } from "../../../_redux/slices/werewolfProfilesSlice";
 import { WerewolfProfileList } from "../werewolf/WerewolfProfileList/WerewolfProfileList";
+import { fetchWerewolfGames } from "../../../_redux/slices/werewolfGamesSlice";
+import { WerewolfGameList } from "../werewolf/WerewolfGameList/WerewolfGameList";
 
 export const InfoPage = styled(({ ...props }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchUsers());
-    dispatch(fetchWerewolfProfiles());
+    async function fetchData() {
+      dispatch(fetchUsers());
+      await dispatch(fetchWerewolfProfiles());
+      await dispatch(fetchWerewolfGames());
+    }
+
+    fetchData();
   }, [dispatch]);
   return (
     <div {...props}>
@@ -32,17 +39,11 @@ export const InfoPage = styled(({ ...props }) => {
       {/*</Container>*/}
       <Container {...props}>
         <Grid container spacing={3}>
-          <Grid item xs={3}>
+          <Grid item xs={4}>
             <WerewolfProfileList />
           </Grid>
-          <Grid item xs={3}>
-            <PlayerList />
-          </Grid>
-          <Grid item xs={3}>
-            <PlayerList />
-          </Grid>
-          <Grid item xs={3}>
-            <PlayerList />
+          <Grid item xs={8}>
+            <WerewolfGameList />
           </Grid>
         </Grid>
       </Container>

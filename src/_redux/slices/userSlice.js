@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import jwt from "jwt-decode";
 import { closeModal } from "./modalSlice";
+import { ERROR_HIDE_DELAY } from "../../components/utils/constants";
 
 export const slice = createSlice({
   name: "user",
@@ -10,6 +11,7 @@ export const slice = createSlice({
     error: null,
     userData: {
       username: null,
+      role: null,
     },
   },
   reducers: {
@@ -30,13 +32,14 @@ export const { setUser, setUserLoading, setUserError } = slice.actions;
 export const authFromToken = () => (dispatch) => {
   const token = localStorage.getItem("token");
   if (token) {
-    const { username, id } = jwt(token);
+    const { username, id, role } = jwt(token);
     dispatch(
       setUser({
         auth: true,
         userData: {
           username,
           id,
+          role,
         },
       })
     );
@@ -66,11 +69,12 @@ export const authInterface = (f, params) => (dispatch) => {
       console.error("error from RegisterModal", e);
       dispatch(setUserError(e.message));
       dispatch(setUserLoading(false));
-      setTimeout(() => dispatch(setUserError(null)), 3000);
+      setTimeout(() => dispatch(setUserError(null)), ERROR_HIDE_DELAY);
     });
 };
 
 export const selectUser = (state) => state.user;
+export const selectUserRole = (state) => state.user.userData.role;
 export const selectUserLoading = (state) => state.user.loading;
 export const selectUserError = (state) => state.user.error;
 

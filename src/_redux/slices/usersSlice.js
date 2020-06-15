@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getUsers } from "../../lib/apiService";
+import { ERROR_HIDE_DELAY } from "../../components/utils/constants";
 
 export const slice = createSlice({
   name: "users",
@@ -32,7 +33,7 @@ export const fetchUsers = () => (dispatch) => {
     .catch((e) => {
       dispatch(setError(e.message));
       dispatch(setLoading(false));
-      setTimeout(() => dispatch(setError(null)), 3000);
+      setTimeout(() => dispatch(setError(null)), ERROR_HIDE_DELAY);
     });
 };
 

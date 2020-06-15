@@ -7,3 +7,5 @@ export const getUsers = (data) => axios.get(`${API_BASE}/users`);
 
 export const getWerewolfProfiles = (data) =>
   axios.get(`${API_BASE}/werewolf/profiles`);
+export const getWerewolfGames = (data) =>
+  axios.get(`${API_BASE}/werewolf/games`);

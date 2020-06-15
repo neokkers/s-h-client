@@ -14,8 +14,9 @@ export const TitledBlock = styled(({ title, children, ...props }) => {
   > .title {
     font-weight: bold;
     line-height: 1;
-    font-size: 1.2rem;
+
     margin-bottom: 1rem;
+    font-size: ${(props) => (props.smallTitle ? "1rem" : "1.2rem")};
   }
   > .children {
     margin-top: 1rem;

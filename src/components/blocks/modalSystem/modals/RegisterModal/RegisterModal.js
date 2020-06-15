@@ -33,9 +33,9 @@ export const RegisterModal = styled(({ ...props }) => {
   password.current = watch("password", "");
 
   return (
-    <ModalBox {...props} onSubmit={handleSubmit(onSubmit)}>
+    <ModalBox {...props}>
       <Title>Registration</Title>
-      <form action="">
+      <form action="" onSubmit={handleSubmit(onSubmit)}>
         <TextField
           fullWidth
           label="Username"

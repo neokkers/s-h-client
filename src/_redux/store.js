@@ -4,6 +4,7 @@ import userReducer from "./slices/userSlice";
 import modalReducer from "./slices/modalSlice";
 import usersReducer from "./slices/usersSlice";
 import werewolfProfilesReducer from "./slices/werewolfProfilesSlice";
+import werewolfGamesReducer from "./slices/werewolfGamesSlice";
 
 export default configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export default configureStore({
     modal: modalReducer,
     users: usersReducer,
     werewolfProfiles: werewolfProfilesReducer,
+    werewolfGames: werewolfGamesReducer,
   },
 });

@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getWerewolfProfiles } from "../../lib/apiService";
+import { getWerewolfGames } from "../../lib/apiService";
 import { ERROR_HIDE_DELAY } from "../../components/utils/constants";
 
 export const slice = createSlice({
-  name: "werewolfProfiles",
+  name: "werewolfGames",
   initialState: {
     data: [],
     loading: false,
@@ -23,11 +23,11 @@ export const slice = createSlice({
 });
 export const { setData, setLoading, setError } = slice.actions;
 
-export const fetchWerewolfProfiles = () => (dispatch) => {
+export const fetchWerewolfGames = () => (dispatch) => {
   dispatch(setLoading(true));
-  getWerewolfProfiles()
-    .then(({ data: { werewolfProfiles } }) => {
-      dispatch(setData(werewolfProfiles));
+  getWerewolfGames()
+    .then(({ data: { werewolfGames } }) => {
+      dispatch(setData(werewolfGames));
       dispatch(setLoading(false));
     })
     .catch((e) => {
@@ -37,6 +37,6 @@ export const fetchWerewolfProfiles = () => (dispatch) => {
     });
 };
 
-export const selectWerewolfProfiles = (state) => state.werewolfProfiles;
+export const selectWerewolfGames = (state) => state.werewolfGames;
 
 export default slice.reducer;
