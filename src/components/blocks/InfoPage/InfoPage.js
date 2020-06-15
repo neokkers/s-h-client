@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { PlayerList } from "../PlayerList/PlayerList";
 import { Container } from "../../elements/Container";
 import { Header } from "../Header";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUsers } from "../../../_redux/slices/usersSlice";
+import {
+  fetchWerewolfProfiles,
+  selectWerewolfProfiles,
+} from "../../../_redux/slices/werewolfProfilesSlice";
+import { WerewolfProfileList } from "../werewolf/WerewolfProfileList/WerewolfProfileList";
 
 export const InfoPage = styled(({ ...props }) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchUsers());
+    dispatch(fetchWerewolfProfiles());
+  }, [dispatch]);
   return (
     <div {...props}>
       <Header />
@@ -21,7 +33,7 @@ export const InfoPage = styled(({ ...props }) => {
       <Container {...props}>
         <Grid container spacing={3}>
           <Grid item xs={3}>
-            <PlayerList />
+            <WerewolfProfileList />
           </Grid>
           <Grid item xs={3}>
             <PlayerList />

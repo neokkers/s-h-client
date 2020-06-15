@@ -5,7 +5,6 @@ import { Sheet } from "../../elements/Sheet";
 import { PlayerCard } from "../PlayerCard";
 import { rankReconciler } from "../../../lib/ranks";
 import { ProfileCardSkeleton } from "../Skeleton";
-import { selectPlayers, setPlayers } from "../../../_redux/slices/playersSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 export const PlayerList = styled(({ ...props }) => {

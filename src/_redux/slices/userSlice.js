@@ -1,8 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { incrementByAmount } from "../features/counter/counterSlice";
 import jwt from "jwt-decode";
 import { closeModal } from "./modalSlice";
-import { login, register } from "../../lib/apiService";
 
 export const slice = createSlice({
   name: "user",
@@ -68,6 +66,7 @@ export const authInterface = (f, params) => (dispatch) => {
       console.error("error from RegisterModal", e);
       dispatch(setUserError(e.message));
       dispatch(setUserLoading(false));
+      setTimeout(() => dispatch(setUserError(null)), 3000);
     });
 };
 
