@@ -25,6 +25,8 @@ import Input from "@material-ui/core/Input";
 import MenuItem from "@material-ui/core/MenuItem";
 import Chip from "@material-ui/core/Chip";
 import { selectUsers } from "../../../../../_redux/slices/usersSlice";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -60,6 +62,12 @@ export const AddWerewolfGameModal = styled(({ ...props }) => {
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
   const [personName1, setPersonName1] = React.useState([]);
+  const [state, setState] = React.useState({
+    checkedA: true,
+    checkedB: true,
+    checkedF: true,
+    checkedG: true,
+  });
   const { data } = useSelector(selectUsers);
   const usernames = data.map((el) => el.username);
 
@@ -69,26 +77,9 @@ export const AddWerewolfGameModal = styled(({ ...props }) => {
       : setPersonName1(event.target.value);
   };
 
-  const handleChangeMultiple = (event, type = 1) => {
-    const { options } = event.target;
-    const value = [];
-    for (let i = 0, l = options.length; i < l; i += 1) {
-      if (options[i].selected) {
-        value.push(options[i].value);
-      }
-    }
-    type === 1 ? setPersonName(value) : setPersonName1(value);
-  };
-  // const dispatch = useDispatch();
-  // const { data } = useSelector(selectWerewolfProfiles);
-  //
-  const { register, errors, watch, handleSubmit } = useForm({
-    mode: "onChange",
-    reValidateMode: "onChange",
-  });
-  //
-  const onSubmit = ({ username, password }, e) => {
-    // dispatch(authInterface(login, { username, password }));
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log(personName, personName1);
   };
   const names = [
     "Oliver Hansen",
@@ -103,10 +94,14 @@ export const AddWerewolfGameModal = styled(({ ...props }) => {
     "Kelly Snyder",
   ];
 
+  const handleChangeCheck = (event) => {
+    setState({ ...state, [event.target.name]: event.target.checked });
+  };
+
   return (
     <ModalBox {...props}>
       <Title>Add werewolf game</Title>
-      <form action="" onSubmit={handleSubmit(onSubmit)}>
+      <form action="" onSubmit={onSubmit}>
         <FormControl className={"w100"}>
           <InputLabel id="demo-mutiple-chip-label">Werewolves</InputLabel>
           <Select
@@ -132,6 +127,7 @@ export const AddWerewolfGameModal = styled(({ ...props }) => {
             ))}
           </Select>
         </FormControl>
+
         <FormControl className={"w100"}>
           <InputLabel id="demo-mutiple-chip-label1">Villagers</InputLabel>
           <Select
@@ -157,26 +153,49 @@ export const AddWerewolfGameModal = styled(({ ...props }) => {
             ))}
           </Select>
         </FormControl>
+        <FormControlLabel
+          className={"w100"}
+          control={
+            <Checkbox
+              checked={state.checkedB}
+              onChange={handleChangeCheck}
+              name="checkedB"
+              color="primary"
+            />
+          }
+          label="Primary"
+        />
+        <ButtonWithLoading
+          variant="contained"
+          color="primary"
+          fullWidth
+          type={"submit"}
+          size={"large"}
+        >
+          Add werewolf game
+        </ButtonWithLoading>
       </form>
     </ModalBox>
   );
 })`
   ${Title} {
     line-height: 1;
+    margin-bottom: 1rem;
     //text-align: center;
   }
   form {
-    .MuiFormControl-root {
-      margin-top: 1rem;
-      &:first-child {
-        margin-top: 2rem;
-      }
-    }
+    //.MuiFormControl-root {
+    //  margin-top: 1rem;
+    //  &:first-child {
+    //    margin-top: 2rem;
+    //  }
+    //}
     ${ButtonWithLoading} {
       margin-top: 2rem;
     }
   }
   .w100 {
+    margin-bottom: 0.5rem;
     width: 100%;
   }
 `;
