@@ -56,7 +56,11 @@ export const WerewolfGameList = styled(({ ...props }) => {
         {/*    );*/}
         {/*  })}*/}
       </TitledBlock>
-      <AddButton onClick={() => dispatch(openModal("addWerewolfGameModal"))} />
+      {role === "admin" && (
+        <AddButton
+          onClick={() => dispatch(openModal("addWerewolfGameModal"))}
+        />
+      )}
     </Sheet>
   );
 })`

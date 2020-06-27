@@ -4,7 +4,7 @@ import { ModalBox } from "../../styles";
 import { Title } from "../../../../elements/Title";
 import { ButtonWithLoading } from "../../../../elements/Button";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -13,9 +13,16 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Input from "@material-ui/core/Input";
 import MenuItem from "@material-ui/core/MenuItem";
 import Chip from "@material-ui/core/Chip";
-import { selectUsers } from "../../../../../_redux/slices/usersSlice";
+import {
+  fetchUsers,
+  selectUsers,
+} from "../../../../../_redux/slices/usersSlice";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import { createWerewolfGame } from "../../../../../lib/apiService";
+import { closeModal } from "../../../../../_redux/slices/modalSlice";
+import { fetchWerewolfGames } from "../../../../../_redux/slices/werewolfGamesSlice";
+import { fetchWerewolfProfiles } from "../../../../../_redux/slices/werewolfProfilesSlice";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -48,6 +55,7 @@ const MenuProps = {
 
 export const AddWerewolfGameModal = styled(({ ...props }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const [personName, setPersonName] = React.useState([]);
   const [personName1, setPersonName1] = React.useState([]);
   const [state, setState] = React.useState({
@@ -65,14 +73,21 @@ export const AddWerewolfGameModal = styled(({ ...props }) => {
   const getIds = (arr) =>
     arr.map((el) => data.find((el2) => el2.username === el)._id);
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
+    const token = `Bearer ${localStorage.getItem("token")}`;
     const dataObj = {
       wolves: getIds(personName),
       villagers: getIds(personName1),
       wolvesWon: state.wolvesWon,
     };
-    console.log(dataObj);
+    const res = await createWerewolfGame(dataObj, token);
+    await dispatch(fetchWerewolfGames());
+    await dispatch(fetchWerewolfProfiles());
+    await dispatch(fetchUsers());
+    dispatch(closeModal());
+
+    // console.log(dataObj, res, token);
   };
 
   const handleChangeCheck = (event) => {

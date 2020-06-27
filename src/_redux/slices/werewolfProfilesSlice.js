@@ -27,7 +27,14 @@ export const fetchWerewolfProfiles = () => (dispatch) => {
   dispatch(setLoading(true));
   getWerewolfProfiles()
     .then(({ data: { werewolfProfiles } }) => {
-      dispatch(setData(werewolfProfiles));
+      dispatch(
+        setData(
+          werewolfProfiles.map((el) => {
+            el.elo = Math.round(el.elo);
+            return el;
+          })
+        )
+      );
       dispatch(setLoading(false));
     })
     .catch((e) => {

@@ -8,5 +8,9 @@ export const getUsers = (data) => axios.get(`${API_BASE}/users`);
 export const getWerewolfProfiles = () =>
   axios.get(`${API_BASE}/werewolf/profiles`);
 export const getWerewolfGames = () => axios.get(`${API_BASE}/werewolf/games`);
-export const createWerewolfGame = (data) =>
-  axios.post(`${API_BASE}/werewolf/games`, data);
+export const createWerewolfGame = (data, token) =>
+  axios.post(`${API_BASE}/werewolf/games`, data, {
+    headers: {
+      Authorization: token,
+    },
+  });

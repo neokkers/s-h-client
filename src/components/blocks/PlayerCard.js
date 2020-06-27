@@ -8,7 +8,7 @@ export const PlayerCard = styled(({ name, rank, elo, ...props }) => {
       <div className="content">
         <div className={"name"}>{name}</div>
         <div className={"rank"}>{rank}</div>
-        <div className={"elo"}>elo: {elo}</div>
+        <div className={"elo"}>elo: {Math.round(elo)}</div>
       </div>
     </div>
   );
