@@ -33,6 +33,7 @@ export const WerewolfGameList = styled(({ ...props }) => {
           );
           return (
             <GameCard
+              key={el._id}
               wolves={[...wolves].sort((a, b) => b.elo - a.elo)}
               villagers={[...villagers].sort((a, b) => b.elo - a.elo)}
               wolvesWon={el.wolvesWon}

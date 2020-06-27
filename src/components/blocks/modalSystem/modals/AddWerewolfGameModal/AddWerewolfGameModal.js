@@ -1,22 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { ModalBox } from "../../styles";
-import TextField from "@material-ui/core/TextField";
-import { useForm } from "react-hook-form";
-import Alert from "@material-ui/lab/Alert";
 import { Title } from "../../../../elements/Title";
 import { ButtonWithLoading } from "../../../../elements/Button";
 
-import { useDispatch, useSelector } from "react-redux";
-import {
-  authInterface,
-  loginUserThunk,
-  selectUser,
-  selectUserError,
-  selectUserLoading,
-} from "../../../../../_redux/slices/userSlice";
-import { login } from "../../../../../lib/apiService";
-import { selectWerewolfProfiles } from "../../../../../_redux/slices/werewolfProfilesSlice";
+import { useSelector } from "react-redux";
+
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
@@ -59,14 +48,10 @@ const MenuProps = {
 
 export const AddWerewolfGameModal = styled(({ ...props }) => {
   const classes = useStyles();
-  const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
   const [personName1, setPersonName1] = React.useState([]);
   const [state, setState] = React.useState({
-    checkedA: true,
-    checkedB: true,
-    checkedF: true,
-    checkedG: true,
+    wolvesWon: false,
   });
   const { data } = useSelector(selectUsers);
   const usernames = data.map((el) => el.username);
@@ -77,22 +62,18 @@ export const AddWerewolfGameModal = styled(({ ...props }) => {
       : setPersonName1(event.target.value);
   };
 
+  const getIds = (arr) =>
+    arr.map((el) => data.find((el2) => el2.username === el)._id);
+
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(personName, personName1);
+    const dataObj = {
+      wolves: getIds(personName),
+      villagers: getIds(personName1),
+      wolvesWon: state.wolvesWon,
+    };
+    console.log(dataObj);
   };
-  const names = [
-    "Oliver Hansen",
-    "Van Henry",
-    "April Tucker",
-    "Ralph Hubbard",
-    "Omar Alexander",
-    "Carlos Abbott",
-    "Miriam Wagner",
-    "Bradley Wilkerson",
-    "Virginia Andrews",
-    "Kelly Snyder",
-  ];
 
   const handleChangeCheck = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
@@ -157,13 +138,13 @@ export const AddWerewolfGameModal = styled(({ ...props }) => {
           className={"w100"}
           control={
             <Checkbox
-              checked={state.checkedB}
+              checked={state.wolvesWon}
               onChange={handleChangeCheck}
-              name="checkedB"
+              name="wolvesWon"
               color="primary"
             />
           }
-          label="Primary"
+          label="Wolves won"
         />
         <ButtonWithLoading
           variant="contained"

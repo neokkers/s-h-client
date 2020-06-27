@@ -5,7 +5,8 @@ export const login = (data) => axios.post(`${API_BASE}/auth/login`, data);
 export const register = (data) => axios.post(`${API_BASE}/auth/register`, data);
 export const getUsers = (data) => axios.get(`${API_BASE}/users`);
 
-export const getWerewolfProfiles = (data) =>
+export const getWerewolfProfiles = () =>
   axios.get(`${API_BASE}/werewolf/profiles`);
-export const getWerewolfGames = (data) =>
-  axios.get(`${API_BASE}/werewolf/games`);
+export const getWerewolfGames = () => axios.get(`${API_BASE}/werewolf/games`);
+export const createWerewolfGame = (data) =>
+  axios.post(`${API_BASE}/werewolf/games`, data);
