@@ -1,27 +1,16 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchWerewolfProfiles,
-  selectWerewolfProfiles,
-} from "../../../../_redux/slices/werewolfProfilesSlice";
+import { selectWerewolfProfiles } from "../../../../_redux/slices/werewolfProfilesSlice";
 import { TitledBlock } from "../../TitledBlock";
 import { ProfileCardSkeleton } from "../../Skeleton";
 import { Sheet } from "../../../elements/Sheet";
 import { rankReconciler } from "../../../../lib/ranks";
 import { PlayerCard } from "../../PlayerCard";
-import {
-  selectUserRole,
-  setUserNav,
-} from "../../../../_redux/slices/userSlice";
 import { listStyles } from "../../list/styles";
-import { fetchUsers } from "../../../../_redux/slices/usersSlice";
-import { fetchWerewolfGames } from "../../../../_redux/slices/werewolfGamesSlice";
 
 export const WerewolfProfileList = styled(({ ...props }) => {
-  const dispatch = useDispatch();
   const { loading, data } = useSelector(selectWerewolfProfiles);
-  const role = useSelector(selectUserRole);
 
   const sortedData = [...data].sort((a, b) => b.elo - a.elo);
 

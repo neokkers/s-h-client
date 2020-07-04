@@ -22,37 +22,26 @@ export const SHGameList = styled(({ ...props }) => {
   return (
     <Sheet {...props}>
       <TitledBlock title={"Secret hitler games"}>
-        {loading && <ProfileCardSkeleton />}
-        {games.map((el) => {
-          const villains = profiles.filter((el2) =>
-            el.villains.includes(el2.userId)
-          );
-          const liberals = profiles.filter((el2) =>
-            el.liberals.includes(el2.userId)
-          );
-          return (
-            <GameCard
-              key={el._id}
-              wolves={[...villains].sort((a, b) => b.elo - a.elo)}
-              villagers={[...liberals].sort((a, b) => b.elo - a.elo)}
-              wolvesWon={el.villainsWon}
-            />
-          );
-        })}
-        {/*{data*/}
-        {/*  // .sort((a, b) => b.elo - a.elo)*/}
-        {/*  .map(({ username: name, elo, _id }) => {*/}
-        {/*    const { rank, img } = rankReconciler(elo);*/}
-        {/*    return (*/}
-        {/*      <PlayerCard*/}
-        {/*        key={_id}*/}
-        {/*        img={img}*/}
-        {/*        name={name}*/}
-        {/*        elo={elo}*/}
-        {/*        rank={rank}*/}
-        {/*      />*/}
-        {/*    );*/}
-        {/*  })}*/}
+        {loading || !games ? (
+          <ProfileCardSkeleton />
+        ) : (
+          games.map((el) => {
+            const villains = profiles.filter((el2) =>
+              el.villains.includes(el2.userId)
+            );
+            const liberals = profiles.filter((el2) =>
+              el.liberals.includes(el2.userId)
+            );
+            return (
+              <GameCard
+                key={el._id}
+                wolves={[...villains].sort((a, b) => b.elo - a.elo)}
+                villagers={[...liberals].sort((a, b) => b.elo - a.elo)}
+                wolvesWon={el.villainsWon}
+              />
+            );
+          })
+        )}
       </TitledBlock>
       {role === "admin" && (
         <AddButton

@@ -5,8 +5,6 @@ import { selectWerewolfProfiles } from "../../../../_redux/slices/werewolfProfil
 import { selectUserRole } from "../../../../_redux/slices/userSlice";
 import { TitledBlock } from "../../TitledBlock";
 import { ProfileCardSkeleton } from "../../Skeleton";
-import { rankReconciler } from "../../../../lib/ranks";
-import { PlayerCard } from "../../PlayerCard";
 import { Sheet } from "../../../elements/Sheet";
 import { selectWerewolfGames } from "../../../../_redux/slices/werewolfGamesSlice";
 import { GameCard } from "../GameCard/GameCard";
@@ -39,22 +37,7 @@ export const WerewolfGameList = styled(({ ...props }) => {
               wolvesWon={el.wolvesWon}
             />
           );
-          console.log(wolves, villagers);
         })}
-        {/*{data*/}
-        {/*  // .sort((a, b) => b.elo - a.elo)*/}
-        {/*  .map(({ username: name, elo, _id }) => {*/}
-        {/*    const { rank, img } = rankReconciler(elo);*/}
-        {/*    return (*/}
-        {/*      <PlayerCard*/}
-        {/*        key={_id}*/}
-        {/*        img={img}*/}
-        {/*        name={name}*/}
-        {/*        elo={elo}*/}
-        {/*        rank={rank}*/}
-        {/*      />*/}
-        {/*    );*/}
-        {/*  })}*/}
       </TitledBlock>
       {role === "admin" && (
         <AddButton

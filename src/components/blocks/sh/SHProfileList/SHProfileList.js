@@ -20,13 +20,22 @@ export const SHProfileList = styled(({ ...props }) => {
   return (
     <Sheet {...props}>
       <TitledBlock title={"Secret hitler players"}>
-        {loading && <ProfileCardSkeleton />}
-        {sortedData.map(({ username: name, elo, _id }) => {
-          const { rank, img } = rankReconciler(elo);
-          return (
-            <PlayerCard key={_id} img={img} name={name} elo={elo} rank={rank} />
-          );
-        })}
+        {loading || !data ? (
+          <ProfileCardSkeleton />
+        ) : (
+          sortedData.map(({ username: name, elo, _id }) => {
+            const { rank, img } = rankReconciler(elo);
+            return (
+              <PlayerCard
+                key={_id}
+                img={img}
+                name={name}
+                elo={elo}
+                rank={rank}
+              />
+            );
+          })
+        )}
       </TitledBlock>
     </Sheet>
   );
