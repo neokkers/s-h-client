@@ -2,53 +2,53 @@ import Imgs from "../static/static";
 
 const ranks = [
   {
-    rank: "Нуб",
-    eloRange: [-Infinity, 799],
+    rank: "Начинающий игрок",
+    eloRange: [-Infinity, 599],
     img: Imgs[0],
   },
   {
-    rank: "Начинающий игрок",
-    eloRange: [800, 999],
+    rank: "Средний игрок",
+    eloRange: [600, 799],
     img: Imgs[1],
   },
   {
-    rank: "Средний игрой",
-    eloRange: [1000, 1199],
+    rank: "Продвинутый игрок",
+    eloRange: [800, 999],
     img: Imgs[2],
   },
   {
-    rank: "Продвинутый игрок",
-    eloRange: [1200, 1399],
+    rank: "Опытный игрок",
+    eloRange: [1000, 1199],
     img: Imgs[3],
   },
   {
-    rank: "Опытный игрок",
-    eloRange: [1400, 1599],
+    rank: "Мастер",
+    eloRange: [1200, 1399],
     img: Imgs[4],
   },
   {
-    rank: "Мастер",
-    eloRange: [1600, 1799],
+    rank: "Ниндзя",
+    eloRange: [1400, 1599],
     img: Imgs[5],
   },
   {
-    rank: "Ниндзя",
-    eloRange: [1800, 1999],
+    rank: "Ниндзя убийца",
+    eloRange: [1600, 1799],
     img: Imgs[6],
   },
   {
-    rank: "Ниндзя убийца",
-    eloRange: [2000, 2199],
+    rank: "Dragon slayer",
+    eloRange: [1800, 1999],
     img: Imgs[7],
   },
   {
-    rank: "Dragon slayer",
-    eloRange: [2200, 2399],
+    rank: "Ultra Pro Dog",
+    eloRange: [2000, 2199],
     img: Imgs[8],
   },
   {
-    rank: "Ultra Pro Dog",
-    eloRange: [2400, Infinity],
+    rank: "Doomed demon",
+    eloRange: [2200, Infinity],
     img: Imgs[8],
   },
 ];

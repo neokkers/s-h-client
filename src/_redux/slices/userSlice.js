@@ -9,6 +9,7 @@ export const slice = createSlice({
     auth: false,
     loading: false,
     error: null,
+    nav: "secret-hitler",
     userData: {
       username: null,
       role: null,
@@ -25,9 +26,17 @@ export const slice = createSlice({
     setUserError: (state, action) => {
       state.error = action.payload;
     },
+    setUserNav: (state, action) => {
+      state.nav = action.payload;
+    },
   },
 });
-export const { setUser, setUserLoading, setUserError } = slice.actions;
+export const {
+  setUser,
+  setUserLoading,
+  setUserError,
+  setUserNav,
+} = slice.actions;
 
 export const authFromToken = () => (dispatch) => {
   const token = localStorage.getItem("token");

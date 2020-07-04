@@ -14,3 +14,12 @@ export const createWerewolfGame = (data, token) =>
       Authorization: token,
     },
   });
+
+export const getSHProfiles = () => axios.get(`${API_BASE}/sh/profiles`);
+export const getSHGames = () => axios.get(`${API_BASE}/sh/games`);
+export const createSHGame = (data, token) =>
+  axios.post(`${API_BASE}/sh/games`, data, {
+    headers: {
+      Authorization: token,
+    },
+  });
