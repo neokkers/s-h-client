@@ -12,3 +12,22 @@ export const listStyles = css`
     margin-top: 1rem;
   }
 `;
+
+export const vhList = css`
+  position: relative;
+  height: 100%;
+  > ${TitledBlock} {
+    height: calc(100vh - 200px);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    > div {
+      &:last-child {
+        position: relative;
+        height: 100%;
+        overflow: auto;
+      }
+    }
+  }
+`;

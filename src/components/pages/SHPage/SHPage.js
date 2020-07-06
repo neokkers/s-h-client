@@ -13,6 +13,7 @@ import {
 } from "../../../_redux/slices/shProfilesSlice";
 import { SHProfileList } from "../../blocks/sh/SHProfileList/SHProfileList";
 import { SHGameList } from "../../blocks/sh/SHGameList/SHGameList";
+import { vhBar } from "../styles";
 
 export const SHPage = styled(({ className, ...props }) => {
   const dispatch = useDispatch();
@@ -32,12 +33,20 @@ export const SHPage = styled(({ className, ...props }) => {
 
   return (
     <Grid container spacing={3} className={className}>
-      <Grid item xs={4}>
+      <Grid item xs={4} className={"vh-bar"}>
         <SHProfileList />
       </Grid>
-      <Grid item xs={8}>
+      <Grid item xs={8} className={"vh-bar"}>
         <SHGameList />
       </Grid>
     </Grid>
   );
-})``;
+})`
+  .vh-bar {
+    position: relative;
+    > div {
+      position: relative;
+      height: 100%;
+    }
+  }
+`;

@@ -7,7 +7,7 @@ import { ProfileCardSkeleton } from "../../Skeleton";
 import { Sheet } from "../../../elements/Sheet";
 import { rankReconciler } from "../../../../lib/ranks";
 import { PlayerCard } from "../../PlayerCard";
-import { listStyles } from "../../list/styles";
+import { listStyles, vhList } from "../../list/styles";
 
 export const WerewolfProfileList = styled(({ ...props }) => {
   const { loading, data } = useSelector(selectWerewolfProfiles);
@@ -29,4 +29,5 @@ export const WerewolfProfileList = styled(({ ...props }) => {
   );
 })`
   ${listStyles}
+  ${vhList}
 `;

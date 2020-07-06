@@ -7,7 +7,7 @@ import { TitledBlock } from "../../TitledBlock";
 import { ProfileCardSkeleton } from "../../Skeleton";
 import { Sheet } from "../../../elements/Sheet";
 import { AddButton } from "../../../elements/Button";
-import { listStyles } from "../../list/styles";
+import { listStyles, vhList } from "../../list/styles";
 import { openModal } from "../../../../_redux/slices/modalSlice";
 import { selectSHGames } from "../../../../_redux/slices/shGamesSlice";
 import { selectSHProfiles } from "../../../../_redux/slices/shProfilesSlice";
@@ -44,12 +44,11 @@ export const SHGameList = styled(({ ...props }) => {
         )}
       </TitledBlock>
       {role === "admin" && (
-        <AddButton
-          onClick={() => dispatch(openModal("addWerewolfGameModal"))}
-        />
+        <AddButton onClick={() => dispatch(openModal("addSHGameModal"))} />
       )}
     </Sheet>
   );
 })`
   ${listStyles}
+  ${vhList}
 `;

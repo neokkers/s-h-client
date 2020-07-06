@@ -7,7 +7,7 @@ import { Sheet } from "../../../elements/Sheet";
 import { rankReconciler } from "../../../../lib/ranks";
 import { PlayerCard } from "../../PlayerCard";
 import { selectUserRole } from "../../../../_redux/slices/userSlice";
-import { listStyles } from "../../list/styles";
+import { listStyles, vhList } from "../../list/styles";
 import { selectSHProfiles } from "../../../../_redux/slices/shProfilesSlice";
 
 export const SHProfileList = styled(({ ...props }) => {
@@ -41,4 +41,5 @@ export const SHProfileList = styled(({ ...props }) => {
   );
 })`
   ${listStyles}
+  ${vhList}
 `;

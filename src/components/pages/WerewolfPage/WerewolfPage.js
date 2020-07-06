@@ -14,6 +14,7 @@ import {
   fetchWerewolfGames,
   selectWerewolfGames,
 } from "../../../_redux/slices/werewolfGamesSlice";
+import { vhBar } from "../styles";
 
 export const WerewolfPage = styled(({ className, ...props }) => {
   const dispatch = useDispatch();

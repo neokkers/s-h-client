@@ -9,7 +9,7 @@ import { Sheet } from "../../../elements/Sheet";
 import { selectWerewolfGames } from "../../../../_redux/slices/werewolfGamesSlice";
 import { GameCard } from "../GameCard/GameCard";
 import { AddButton } from "../../../elements/Button";
-import { listStyles } from "../../list/styles";
+import { listStyles, vhList } from "../../list/styles";
 import { openModal } from "../../../../_redux/slices/modalSlice";
 
 export const WerewolfGameList = styled(({ ...props }) => {
@@ -48,4 +48,5 @@ export const WerewolfGameList = styled(({ ...props }) => {
   );
 })`
   ${listStyles}
+  ${vhList}
 `;
