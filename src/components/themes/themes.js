@@ -23,8 +23,14 @@ const utils = {
     "0px 5px 5px -3px rgba(0,0,0,0.05), 0px 8px 10px 1px rgba(0,0,0,0.02), 0px 3px 14px 2px rgba(0,0,0,0.02)",
 };
 
-export const lightTheme = { name: "light", spaces, sizes, utils };
-export const darkTheme = { name: "dark", spaces, sizes, utils };
+const media = {
+  xl: "1440px",
+  s: "768px",
+  xs: "550px",
+};
+
+export const lightTheme = { name: "light", spaces, sizes, utils, media };
+export const darkTheme = { name: "dark", spaces, sizes, utils, media };
 
 lightTheme.colors = {
   primary: "#444",

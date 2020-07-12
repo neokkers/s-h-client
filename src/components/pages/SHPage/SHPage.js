@@ -33,10 +33,10 @@ export const SHPage = styled(({ className, ...props }) => {
 
   return (
     <Grid container spacing={3} className={className}>
-      <Grid item xs={4} className={"vh-bar"}>
+      <Grid item xs={12} md={4} className={"vh-bar"}>
         <SHProfileList />
       </Grid>
-      <Grid item xs={8} className={"vh-bar"}>
+      <Grid item xs={12} md={8} className={"vh-bar"}>
         <SHGameList />
       </Grid>
     </Grid>

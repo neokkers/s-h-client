@@ -34,10 +34,10 @@ export const WerewolfPage = styled(({ className, ...props }) => {
 
   return (
     <Grid container spacing={3} className={className}>
-      <Grid item xs={4}>
+      <Grid item xs={12} md={4}>
         <WerewolfProfileList />
       </Grid>
-      <Grid item xs={8}>
+      <Grid item xs={12} md={8}>
         <WerewolfGameList />
       </Grid>
     </Grid>

@@ -6,4 +6,8 @@ export const Container = styled(({ ...props }) => {
 })`
   width: 1440px;
   margin: 0 auto;
+  padding: 0 1rem;
+  @media screen and (max-width: 1440px) {
+    width: 100%;
+  }
 `;

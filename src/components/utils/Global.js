@@ -7,6 +7,9 @@ export const GlobalStyle = createGlobalStyle`
     scroll-behavior: smooth;
     font-size: 16px;
     line-height: 1.3;
+    @media screen and (max-device-width: ${(props) => props.theme.media.s}) {
+      font-size: 14px;
+    }
   }
   body {
     color: ${(props) => props.theme.colors.primary};
