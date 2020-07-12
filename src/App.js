@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { InfoPage } from "./components/blocks/InfoPage/InfoPage";
 import { ModalSystem } from "./components/blocks/modalSystem/ModalSystem";
 import { withAuth } from "./_hoc/withAuth";

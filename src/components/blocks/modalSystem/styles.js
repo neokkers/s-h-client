@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 export const ModalSystemStyled = styled.div`
   z-index: 999;
   position: fixed;

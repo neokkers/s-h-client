@@ -13,7 +13,6 @@ import {
 } from "../../../_redux/slices/shProfilesSlice";
 import { SHProfileList } from "../../blocks/sh/SHProfileList/SHProfileList";
 import { SHGameList } from "../../blocks/sh/SHGameList/SHGameList";
-import { vhBar } from "../styles";
 
 export const SHPage = styled(({ className, ...props }) => {
   const dispatch = useDispatch();

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getSHGames, getWerewolfGames } from "../../lib/apiService";
+import { getSHGames } from "../../lib/apiService";
 import { ERROR_HIDE_DELAY } from "../../components/utils/constants";
 
 export const slice = createSlice({

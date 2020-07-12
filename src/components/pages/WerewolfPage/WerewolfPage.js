@@ -5,7 +5,6 @@ import { WerewolfProfileList } from "../../blocks/werewolf/WerewolfProfileList/W
 import { WerewolfGameList } from "../../blocks/werewolf/WerewolfGameList/WerewolfGameList";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserNav } from "../../../_redux/slices/userSlice";
-import { fetchUsers } from "../../../_redux/slices/usersSlice";
 import {
   fetchWerewolfProfiles,
   selectWerewolfProfiles,
@@ -14,7 +13,6 @@ import {
   fetchWerewolfGames,
   selectWerewolfGames,
 } from "../../../_redux/slices/werewolfGamesSlice";
-import { vhBar } from "../styles";
 
 export const WerewolfPage = styled(({ className, ...props }) => {
   const dispatch = useDispatch();

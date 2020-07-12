@@ -1,14 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import LocalActivityIcon from "@material-ui/icons/LocalActivity";
-import Button from "@material-ui/core/Button";
 
 export const Logo = styled(({ logo, ...props }) => {
-  return <img {...props} src={logo} />;
+  return <img {...props} src={logo} alt={"logo"} />;
 })`
-  // background-image: url(${(props) => props.logo});
-  // background-size: cover;
-  // background-repeat: no-repeat;
   height: 50px;
 `;
 export const LogoNew = styled(({ ...props }) => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { ModalBox } from "../../styles";
 import TextField from "@material-ui/core/TextField";
@@ -9,8 +9,6 @@ import { ButtonWithLoading } from "../../../../elements/Button";
 import { useDispatch, useSelector } from "react-redux";
 import {
   authInterface,
-  loginUserThunk,
-  selectUser,
   selectUserError,
   selectUserLoading,
 } from "../../../../../_redux/slices/userSlice";
@@ -86,7 +84,6 @@ export const LoginModal = styled(({ ...props }) => {
 })`
   ${Title} {
     line-height: 1;
-    //text-align: center;
   }
   form {
     .MuiFormControl-root {

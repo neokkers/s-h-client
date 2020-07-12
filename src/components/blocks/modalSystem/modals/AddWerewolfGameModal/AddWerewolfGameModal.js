@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Input from "@material-ui/core/Input";
 import MenuItem from "@material-ui/core/MenuItem";
 import Chip from "@material-ui/core/Chip";
@@ -19,10 +19,10 @@ import {
 } from "../../../../../_redux/slices/usersSlice";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import { createWerewolfGame } from "../../../../../lib/apiService";
 import { closeModal } from "../../../../../_redux/slices/modalSlice";
 import { fetchWerewolfGames } from "../../../../../_redux/slices/werewolfGamesSlice";
 import { fetchWerewolfProfiles } from "../../../../../_redux/slices/werewolfProfilesSlice";
+import { createWerewolfGame } from "../../../../../lib/apiService";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -41,17 +41,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(3),
   },
 }));
-
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
 
 export const AddWerewolfGameModal = styled(({ ...props }) => {
   const classes = useStyles();
@@ -75,19 +64,19 @@ export const AddWerewolfGameModal = styled(({ ...props }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
     const token = `Bearer ${localStorage.getItem("token")}`;
     const dataObj = {
       wolves: getIds(personName),
       villagers: getIds(personName1),
       wolvesWon: state.wolvesWon,
     };
-    const res = await createWerewolfGame(dataObj, token);
+    await createWerewolfGame(dataObj, token);
+
     await dispatch(fetchWerewolfGames());
     await dispatch(fetchWerewolfProfiles());
     await dispatch(fetchUsers());
     dispatch(closeModal());
-
-    // console.log(dataObj, res, token);
   };
 
   const handleChangeCheck = (event) => {
@@ -177,15 +166,8 @@ export const AddWerewolfGameModal = styled(({ ...props }) => {
   ${Title} {
     line-height: 1;
     margin-bottom: 1rem;
-    //text-align: center;
   }
   form {
-    //.MuiFormControl-root {
-    //  margin-top: 1rem;
-    //  &:first-child {
-    //    margin-top: 2rem;
-    //  }
-    //}
     ${ButtonWithLoading} {
       margin-top: 2rem;
     }

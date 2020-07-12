@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Container } from "../elements/Container";
 import LogoImg from "../../static/logo2.png";
-import { Logo, LogoNew } from "./Logo";
+import { LogoNew } from "./Logo";
 import { UserWidget } from "./UserWidget";
 import Nav from "./Nav/Nav";
 import { useMediaQuery } from "react-responsive";

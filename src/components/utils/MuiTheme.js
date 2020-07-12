@@ -1,10 +1,8 @@
 import React from "react";
 import { unstable_createMuiStrictModeTheme as createMuiTheme } from "@material-ui/core/styles";
-// import { CONSTANTS } from "../components/styleUtils/constants";
 import { ThemeProvider as ThemeProviderMui } from "@material-ui/core/styles";
-import { lightTheme, darkTheme } from "../themes";
+import { lightTheme } from "../themes";
 import { StylesProvider } from "@material-ui/styles";
-import purple from "@material-ui/core/colors/purple";
 
 export const MuiTheme = ({ children }) => {
   const theme = createMuiTheme({

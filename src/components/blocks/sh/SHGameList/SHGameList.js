@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { selectWerewolfProfiles } from "../../../../_redux/slices/werewolfProfilesSlice";
 import { selectUserRole } from "../../../../_redux/slices/userSlice";
 import { TitledBlock } from "../../TitledBlock";
 import { ProfileCardSkeleton } from "../../Skeleton";

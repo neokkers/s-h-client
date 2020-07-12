@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { ModalBox } from "../../styles";
 import TextField from "@material-ui/core/TextField";
@@ -111,7 +111,6 @@ export const RegisterModal = styled(({ ...props }) => {
 })`
   ${Title} {
     line-height: 1;
-    //text-align: center;
   }
   form {
     .MuiFormControl-root {

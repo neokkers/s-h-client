@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { PlayerCard, PlayerCardSmall } from "../../PlayerCard";
+import { PlayerCardSmall } from "../../PlayerCard";
 import { rankReconciler } from "../../../../lib/ranks";
 import { TitledBlock } from "../../TitledBlock";
 import { useSelector } from "react-redux";

@@ -1,5 +1,3 @@
-import { light } from "@material-ui/core/styles/createPalette";
-
 const spaces = {
   xs: "0.5rem",
   s: "0.9rem",

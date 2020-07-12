@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { selectModal, closeModal } from "../../../_redux/slices/modalSlice";
 import { modals } from "./modals/modals";

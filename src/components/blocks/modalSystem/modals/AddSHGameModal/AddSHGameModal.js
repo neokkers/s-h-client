@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Input from "@material-ui/core/Input";
 import MenuItem from "@material-ui/core/MenuItem";
 import Chip from "@material-ui/core/Chip";
@@ -19,13 +19,8 @@ import {
 } from "../../../../../_redux/slices/usersSlice";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import {
-  createSHGame,
-  createWerewolfGame,
-} from "../../../../../lib/apiService";
+import { createSHGame } from "../../../../../lib/apiService";
 import { closeModal } from "../../../../../_redux/slices/modalSlice";
-import { fetchWerewolfGames } from "../../../../../_redux/slices/werewolfGamesSlice";
-import { fetchWerewolfProfiles } from "../../../../../_redux/slices/werewolfProfilesSlice";
 import { fetchSHGames } from "../../../../../_redux/slices/shGamesSlice";
 import { fetchSHProfiles } from "../../../../../_redux/slices/shProfilesSlice";
 
@@ -79,9 +74,9 @@ export const AddSHGameModal = styled(({ ...props }) => {
         data.find((el2) => el2.username === hitler) &&
         data.find((el2) => el2.username === hitler)._id,
     };
-    // console.log(dataObj);
 
-    const res = await createSHGame(dataObj, token);
+    await createSHGame(dataObj, token);
+
     await dispatch(fetchSHGames());
     await dispatch(fetchSHProfiles());
     await dispatch(fetchUsers());
@@ -156,13 +151,6 @@ export const AddSHGameModal = styled(({ ...props }) => {
             value={hitler}
             onChange={(e) => handleChange(e, "hitler")}
             input={<Input id="select-multiple-chip2" />}
-            // renderValue={(selected) => (
-            //   <div className={classes.chips}>
-            //     {selected.map((value) => (
-            //       <Chip key={value} label={value} className={classes.chip} />
-            //     ))}
-            //   </div>
-            // )}
           >
             {usernames.map((name) => (
               <MenuItem key={name} value={name}>
