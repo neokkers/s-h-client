@@ -19,7 +19,7 @@ export const UserWidget = styled(({ ...props }) => {
   } = useSelector(selectUser);
 
   const noAuthView = (
-    <>
+    <div className={"no-auth"}>
       <Button
         variant="outlined"
         color="primary"
@@ -34,7 +34,7 @@ export const UserWidget = styled(({ ...props }) => {
       >
         Sign in
       </Button>
-    </>
+    </div>
   );
 
   const authView = (
@@ -69,6 +69,16 @@ export const UserWidget = styled(({ ...props }) => {
 
   return <div {...props}>{!auth ? noAuthView : authView}</div>;
 })`
+  .no-auth {
+    display: flex;
+    align-items: center;
+    > button {
+      flex-shrink: 0;
+      &:first-child {
+        margin-right: 0.5rem;
+      }
+    }
+  }
   > button {
     &:first-child {
       margin-right: 0.5rem;
