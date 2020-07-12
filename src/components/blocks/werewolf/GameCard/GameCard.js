@@ -3,13 +3,19 @@ import styled from "styled-components";
 import { PlayerCard, PlayerCardSmall } from "../../PlayerCard";
 import { rankReconciler } from "../../../../lib/ranks";
 import { TitledBlock } from "../../TitledBlock";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../../../_redux/slices/userSlice";
 
 export const GameCard = styled(({ wolves, villagers, wolvesWon, ...props }) => {
+  const { nav } = useSelector(selectUser);
   return (
     <div {...props}>
       <div className="teams">
         <div className="wolves">
-          <TitledBlock smallTitle title={"Wolves"}>
+          <TitledBlock
+            smallTitle
+            title={nav === "werewolves" ? "Wolves" : "Villains"}
+          >
             {wolves.map(({ username: name, elo, _id }) => {
               const { rank, img } = rankReconciler(elo);
               return (
@@ -25,7 +31,10 @@ export const GameCard = styled(({ wolves, villagers, wolvesWon, ...props }) => {
           </TitledBlock>
         </div>
         <div className="villagers">
-          <TitledBlock smallTitle title={"Villagers"}>
+          <TitledBlock
+            smallTitle
+            title={nav === "werewolves" ? "Villagers" : "Liberals"}
+          >
             {villagers.map(({ username: name, elo, _id }) => {
               const { rank, img } = rankReconciler(elo);
               return (
@@ -42,7 +51,7 @@ export const GameCard = styled(({ wolves, villagers, wolvesWon, ...props }) => {
         </div>
       </div>
       <div className="info">
-        <div>{wolvesWon ? "Werewolves won" : "Villagers won"}</div>
+        <div>{wolvesWon ? "Villains won" : "Liberals won"}</div>
       </div>
     </div>
   );
@@ -52,10 +61,21 @@ export const GameCard = styled(({ wolves, villagers, wolvesWon, ...props }) => {
   border-radius: ${(props) => props.theme.utils.borderRadius};
   .teams {
     display: flex;
+
     > div {
       flex: 1;
       &:first-child {
         margin-right: 1rem;
+      }
+    }
+    @media screen and (max-device-width: ${(props) => props.theme.media.s}) {
+      display: block;
+      > div {
+        flex: 1;
+        &:first-child {
+          margin: 0;
+          margin-bottom: 1rem;
+        }
       }
     }
   }
