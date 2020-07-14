@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import themeReducer from "./slices/themeSlice";
+import apiReducer from "./slices/apiSlice";
 import userReducer from "./slices/userSlice";
 import modalReducer from "./slices/modalSlice";
 import usersReducer from "./slices/usersSlice";
@@ -11,6 +12,7 @@ import shGamesReducer from "./slices/shGamesSlice";
 export default configureStore({
   reducer: {
     theme: themeReducer,
+    api: apiReducer,
     user: userReducer,
     modal: modalReducer,
     users: usersReducer,
