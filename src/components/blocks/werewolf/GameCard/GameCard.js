@@ -14,7 +14,7 @@ export const GameCard = styled(({ wolves, villagers, wolvesWon, ...props }) => {
         <div className="wolves">
           <TitledBlock
             smallTitle
-            title={nav === "werewolves" ? "Wolves" : "Villains"}
+            title={nav === "werewolves" ? "Dark" : "Dark"}
           >
             {wolves.map(({ username: name, elo, _id }) => {
               const { rank, img } = rankReconciler(elo);
@@ -33,7 +33,7 @@ export const GameCard = styled(({ wolves, villagers, wolvesWon, ...props }) => {
         <div className="villagers">
           <TitledBlock
             smallTitle
-            title={nav === "werewolves" ? "Villagers" : "Liberals"}
+            title={nav === "werewolves" ? "Light" : "Light"}
           >
             {villagers.map(({ username: name, elo, _id }) => {
               const { rank, img } = rankReconciler(elo);
@@ -51,7 +51,7 @@ export const GameCard = styled(({ wolves, villagers, wolvesWon, ...props }) => {
         </div>
       </div>
       <div className="info">
-        <div>{wolvesWon ? "Villains won" : "Liberals won"}</div>
+        <div>{wolvesWon ? "Dark won" : "Light won"}</div>
       </div>
     </div>
   );
